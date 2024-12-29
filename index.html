@@ -27,12 +27,14 @@
     <textarea id="message" rows="4" cols="50" placeholder="Type your message here..."></textarea><br><br>
 
     <p id="charCount">0/200 characters</p>
+    <p id="remaining">Remaining Characters</p>
     <p id="warning" class="warning" style="display: none;">You have exceeded the character limit!</p>
     </div>
 
     <script>
         const messageInput = document.getElementById('message');
         const charCountDisplay = document.getElementById('charCount');
+        const remaining=document.getElementById('remaining')
         const warningMessage = document.getElementById('warning');
         const maxLength = 200;
 
@@ -40,9 +42,11 @@
         messageInput.addEventListener('input', function() {
             const currentLength = messageInput.value.length;
            
+            const remainingChars = maxLength - currentLength;
 
             // Update the character count display
             charCountDisplay.textContent = `${currentLength}/${maxLength} characters`;
+            remaining.textContent=`Remaining Characters :${remainingChars}`
 
             // Show a warning if the user exceeds the limit
             if (currentLength >= maxLength) {
